@@ -11,20 +11,21 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 20,
-          background: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)',
+          fontSize: 11,
+          background: '#000000',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: 'white',
-          fontWeight: 700,
-          fontFamily: 'system-ui, sans-serif',
-          borderRadius: 6,
+          fontWeight: 600,
+          fontFamily: 'Georgia, Times New Roman, serif',
+          letterSpacing: 1,
+          textShadow: '0 0 2px #2563eb, 0 0 4px #06b6d4',
         }}
       >
-        K
+        KMG
       </div>
     ),
     {
