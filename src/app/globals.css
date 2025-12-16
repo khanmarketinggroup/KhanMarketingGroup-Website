@@ -5,10 +5,10 @@
   --background-bottom: #1a1a1a;
   --foreground: #ffffff;
   
-  /* Text colors */
+  /* Text colors - brighter for readability */
   --text-heading: #ffffff;
-  --text-body: #b0b0b0;
-  --text-muted: #808080;
+  --text-body: #d4d4d4;
+  --text-muted: #a3a3a3;
   
   /* Blue to Cyan gradient accent */
   --accent-blue: #2563eb;
@@ -99,3 +99,6 @@ body {
     transparent 100%
   );
 }
+
+
+

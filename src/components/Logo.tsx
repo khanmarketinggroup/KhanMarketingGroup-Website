@@ -1,73 +1,36 @@
 "use client";
 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
   variant?: "white" | "black";
   className?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 export function Logo({ variant = "white", className, size = "md" }: LogoProps) {
-  const textColor = variant === "white" ? "#ffffff" : "#000000";
-  const bgColor = variant === "white" ? "rgba(255,255,255,0.9)" : "#000000";
-  const boxTextColor = variant === "white" ? "#000000" : "#ffffff";
-
-  const sizeClasses = {
-    sm: "h-8",
-    md: "h-12",
-    lg: "h-16",
+  // Width-based sizing (logo is wider than tall)
+  const sizeStyles = {
+    sm: { width: 120, height: 45 },   // Header - compact
+    md: { width: 180, height: 68 },   // Footer
+    lg: { width: 300, height: 113 },  // Large
+    xl: { width: 400, height: 150 },  // Extra large
   };
 
+  const dimensions = sizeStyles[size];
+  const imageSrc = variant === "white" ? "/portfolio/logo-white.png" : "/portfolio/logo-black.png";
+
   return (
-    <svg
-      viewBox="0 0 400 150"
-      className={cn(sizeClasses[size], "w-auto", className)}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* KHAN text */}
-      <text
-        x="200"
-        y="70"
-        textAnchor="middle"
-        fontFamily="'Times New Roman', Georgia, serif"
-        fontSize="72"
-        fontWeight="400"
-        letterSpacing="8"
-        fill={textColor}
-      >
-        KHAN
-      </text>
-
-      {/* MARKETING box */}
-      <rect x="45" y="90" width="195" height="40" fill={bgColor} />
-      <text
-        x="142"
-        y="118"
-        textAnchor="middle"
-        fontFamily="'Times New Roman', Georgia, serif"
-        fontSize="22"
-        fontWeight="400"
-        letterSpacing="3"
-        fill={boxTextColor}
-      >
-        MARKETING
-      </text>
-
-      {/* GROUP text */}
-      <text
-        x="310"
-        y="118"
-        textAnchor="middle"
-        fontFamily="'Times New Roman', Georgia, serif"
-        fontSize="22"
-        fontWeight="400"
-        letterSpacing="3"
-        fill={textColor}
-      >
-        GROUP
-      </text>
-    </svg>
+    <div className={cn("relative", className)}>
+      <Image
+        src={imageSrc}
+        alt="Khan Marketing Group"
+        width={dimensions.width}
+        height={dimensions.height}
+        className="w-auto h-auto"
+        priority
+      />
+    </div>
   );
 }
-

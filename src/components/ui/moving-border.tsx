@@ -55,7 +55,7 @@ export function Button({
           <MovingBorder duration={duration} rx="50%" ry="50%">
             <div
               className={cn(
-                "h-32 w-32 bg-[radial-gradient(#06b6d4_40%,transparent_60%)] opacity-90",
+                "h-8 w-8 bg-[radial-gradient(#06b6d4_40%,transparent_70%)] opacity-90",
                 borderClassName
               )}
             />
@@ -120,7 +120,7 @@ export function GradientButton({
       <div className="absolute inset-0 rounded-full">
         {mounted && (
           <MovingBorder duration={3000} rx="50%" ry="50%">
-            <div className="h-32 w-32 bg-[radial-gradient(#06b6d4_40%,transparent_60%)] opacity-90" />
+            <div className="h-8 w-8 bg-[radial-gradient(#06b6d4_40%,transparent_70%)] opacity-90" />
           </MovingBorder>
         )}
       </div>

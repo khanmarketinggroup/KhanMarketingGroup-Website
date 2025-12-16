@@ -108,7 +108,7 @@ export function ContactForm() {
         <h3 className="text-2xl font-semibold text-white mb-2" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
           Message Sent!
         </h3>
-        <p className="text-[#b0b0b0] mb-6">
+        <p className="text-[#d4d4d4] mb-6">
           Thanks for reaching out. I&apos;ll get back to you within 24 hours.
         </p>
         <button
@@ -125,7 +125,7 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm text-[#b0b0b0] mb-2">Name *</label>
+          <label className="block text-sm text-[#d4d4d4] mb-2">Name *</label>
           <input
             type="text"
             required
@@ -136,7 +136,7 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label className="block text-sm text-[#b0b0b0] mb-2">Email *</label>
+          <label className="block text-sm text-[#d4d4d4] mb-2">Email *</label>
           <input
             type="email"
             required
@@ -150,7 +150,7 @@ export function ContactForm() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm text-[#b0b0b0] mb-2">Phone *</label>
+          <label className="block text-sm text-[#d4d4d4] mb-2">Phone *</label>
           <input
             type="tel"
             required
@@ -161,7 +161,7 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label className="block text-sm text-[#b0b0b0] mb-2">Business Name *</label>
+          <label className="block text-sm text-[#d4d4d4] mb-2">Business Name *</label>
           <input
             type="text"
             required
@@ -174,7 +174,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-[#b0b0b0] mb-3">Services Interested In</label>
+        <label className="block text-sm text-[#d4d4d4] mb-3">Services Interested In</label>
         <div className="flex flex-wrap gap-2">
           {serviceOptions.map((service) => (
             <button
@@ -185,7 +185,7 @@ export function ContactForm() {
                 "px-4 py-2 rounded-full text-sm border transition-all duration-300",
                 formData.services.includes(service)
                   ? "bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white border-transparent shadow-[0_0_15px_rgba(6,182,212,0.3)]"
-                  : "bg-transparent text-[#b0b0b0] border-white/[0.12] hover:border-[#2563eb]/50 hover:text-white"
+                  : "bg-transparent text-[#d4d4d4] border-white/[0.12] hover:border-[#2563eb]/50 hover:text-white"
               )}
             >
               {service}
@@ -195,7 +195,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-[#b0b0b0] mb-3">Preferred Contact Method</label>
+        <label className="block text-sm text-[#d4d4d4] mb-3">Preferred Contact Method</label>
         <div className="flex gap-3">
           {contactMethods.map((method) => (
             <button
@@ -206,7 +206,7 @@ export function ContactForm() {
                 "px-5 py-2.5 rounded-xl text-sm border transition-all duration-300",
                 formData.contactMethod === method
                   ? "bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white border-transparent shadow-[0_0_15px_rgba(6,182,212,0.3)]"
-                  : "bg-transparent text-[#b0b0b0] border-white/[0.12] hover:border-[#2563eb]/50 hover:text-white"
+                  : "bg-transparent text-[#d4d4d4] border-white/[0.12] hover:border-[#2563eb]/50 hover:text-white"
               )}
             >
               {method}
@@ -216,7 +216,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-[#b0b0b0] mb-2">Tell Us About Your Project</label>
+        <label className="block text-sm text-[#d4d4d4] mb-2">Tell Us About Your Project</label>
         <textarea
           value={formData.projectDetails}
           onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
@@ -226,7 +226,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-[#b0b0b0] mb-2">How Did You Hear About Us?</label>
+        <label className="block text-sm text-[#d4d4d4] mb-2">How Did You Hear About Us?</label>
         <input
           type="text"
           value={formData.hearAboutUs}

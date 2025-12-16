@@ -11,27 +11,41 @@ export default function AppleIcon() {
     (
       <div
         style={{
-          fontSize: 56,
-          background: '#000000',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
-          fontWeight: 600,
-          fontFamily: 'Georgia, Times New Roman, serif',
-          letterSpacing: 4,
-          textShadow: '0 0 8px #2563eb, 0 0 16px #06b6d4',
-          borderRadius: 32,
+          backgroundColor: '#06b6d4',
+          padding: 6,
+          borderRadius: 28,
         }}
       >
-        KMG
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'black',
+            borderRadius: 20,
+          }}
+        >
+          <span
+            style={{
+              fontSize: 60,
+              fontWeight: 700,
+              color: 'white',
+              fontFamily: 'Georgia, serif',
+              letterSpacing: -2,
+            }}
+          >
+            KMG
+          </span>
+        </div>
       </div>
     ),
-    {
-      ...size,
-    }
+    { ...size }
   )
 }
-

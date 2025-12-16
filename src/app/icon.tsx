@@ -11,26 +11,39 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 11,
-          background: '#000000',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
-          fontWeight: 600,
-          fontFamily: 'Georgia, Times New Roman, serif',
-          letterSpacing: 1,
-          textShadow: '0 0 2px #2563eb, 0 0 4px #06b6d4',
+          backgroundColor: '#06b6d4',
+          padding: 2,
         }}
       >
-        KMG
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'black',
+          }}
+        >
+          <span
+            style={{
+              fontSize: 11,
+              fontWeight: 700,
+              color: 'white',
+              fontFamily: 'Georgia, serif',
+              letterSpacing: -0.5,
+            }}
+          >
+            KMG
+          </span>
+        </div>
       </div>
     ),
-    {
-      ...size,
-    }
+    { ...size }
   )
 }
-
