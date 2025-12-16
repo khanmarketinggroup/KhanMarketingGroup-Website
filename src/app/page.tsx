@@ -43,8 +43,14 @@ export default function Home() {
     <main className="min-h-screen antialiased relative">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/[0.05]">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          <Logo variant="white" size="sm" />
+        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between md:justify-between">
+          {/* Mobile: empty spacer for centering */}
+          <div className="w-10 md:hidden" />
+          
+          {/* Logo - centered on mobile, left on desktop */}
+          <div className="md:flex-none">
+            <Logo variant="white" size="sm" />
+          </div>
           
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-10">
