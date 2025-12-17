@@ -142,7 +142,7 @@ export default function Home() {
             className={`text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-[1.15] mb-6 tracking-tight transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
           >
-            <span className="whitespace-nowrap">Marketing that actually works</span>
+            <span className="md:whitespace-nowrap">Marketing that actually works</span>
             <br />
             <span className="text-gradient">for local businesses.</span>
           </h1>
