@@ -11,9 +11,7 @@ import { BackgroundPaths } from "@/components/ui/background-paths";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { BusinessStarterHub } from "@/components/ui/business-starter-hub";
 import { WebsiteTiers } from "@/components/ui/website-tiers";
-import Image from "next/image";
 import {
-  IconWorld,
   IconAd,
   IconMapPin,
   IconBrandInstagram,
@@ -137,79 +135,45 @@ export default function Home() {
         </AnimatePresence>
       </nav>
 
-      {/* Hero Section - Split Layout */}
+      {/* Hero Section */}
       <section className="relative z-10 min-h-screen flex items-center overflow-hidden pt-20">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left side - Device Mockup */}
-            <div className="order-1">
-              <div 
-                className={`relative transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
-              >
-                {/* Laptop mockup */}
-                <div className="relative mx-auto max-w-xl">
-                  {/* Glow effect behind */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#2563eb]/20 to-[#06b6d4]/20 blur-3xl rounded-full scale-110" />
-                  
-                  {/* Laptop frame */}
-                  <div className="relative bg-[#1a1a1a] rounded-2xl p-3 border border-white/[0.1] shadow-2xl">
-                    {/* Screen */}
-                    <div className="aspect-[16/10] bg-[#0a0a0a] rounded-lg overflow-hidden border border-white/[0.05]">
-                      <Image
-                        src="/portfolio/clean-green.jpg"
-                        alt="Clean & Green Property Care Website"
-                        width={800}
-                        height={500}
-                        className="w-full h-full object-cover object-top"
-                        priority
-                      />
-                    </div>
-                    {/* Laptop base */}
-                    <div className="h-4 bg-[#1a1a1a] rounded-b-xl mt-2 mx-auto w-1/3" />
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="max-w-4xl mx-auto px-6 w-full text-center">
+          <h1
+            className={`text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-[1.15] mb-6 tracking-tight transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
+          >
+            <span className="whitespace-nowrap">Marketing that actually works</span>
+            <br />
+            <span className="text-gradient">for local businesses.</span>
+          </h1>
 
-            {/* Right side - Text */}
-            <div className="order-2 relative z-10">
-              <h1 
-                className={`text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-[1.15] mb-6 tracking-tight transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
-                style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
-              >
-                Marketing that actually works{" "}
-                <span className="text-gradient">for local businesses.</span>
-              </h1>
+          <p
+            className={`text-lg text-[#d4d4d4] mb-10 leading-relaxed max-w-2xl mx-auto transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          >
+            Websites, ads, and Google listings that bring in customers — not just clicks.
+            Built by someone who&apos;s done it for their own business first.
+          </p>
 
-              <p 
-                className={`text-lg text-[#d4d4d4] mb-10 leading-relaxed max-w-xl transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
-              >
-                Websites, ads, and Google listings that bring in customers — not just clicks.
-                Built by someone who&apos;s done it for their own business first.
-              </p>
+          <div
+            className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          >
+            <MovingBorderButton
+              as="a"
+              href="#contact"
+              borderRadius="9999px"
+              containerClassName="h-14 w-44"
+              className="text-base px-8 tracking-wide"
+              duration={3000}
+            >
+              Get in Touch
+            </MovingBorderButton>
 
-              <div 
-                className={`flex flex-col sm:flex-row items-start sm:items-center gap-4 transition-all duration-700 delay-300 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
-              >
-                <MovingBorderButton
-                  as="a"
-                  href="#contact"
-                  borderRadius="9999px"
-                  containerClassName="h-14 w-44"
-                  className="text-base px-8 tracking-wide"
-                  duration={3000}
-                >
-                  Get in Touch
-                </MovingBorderButton>
-                
-                <a
-                  href="#services"
-                  className="px-8 py-4 rounded-full text-[#d4d4d4] hover:text-white border border-white/[0.1] hover:border-white/25 transition-all duration-300 text-base tracking-wide"
-                >
-                  View Services
-                </a>
-              </div>
-            </div>
+            <a
+              href="#services"
+              className="px-8 py-4 rounded-full text-[#d4d4d4] hover:text-white border border-white/[0.1] hover:border-white/25 transition-all duration-300 text-base tracking-wide"
+            >
+              View Services
+            </a>
           </div>
         </div>
       </section>
@@ -374,17 +338,19 @@ export default function Home() {
             </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="flex flex-col md:flex-row justify-center gap-6">
             {portfolioItems.map((item, index) => (
               <ScrollReveal key={item.title} delay={index * 0.15} direction="right">
-                <PortfolioCard
-                  title={item.title}
-                  url={item.url}
-                  details={item.details}
-                  result={item.result}
-                  image={item.image}
-                  index={index}
-                />
+                <div className="w-full md:w-[380px]">
+                  <PortfolioCard
+                    title={item.title}
+                    url={item.url}
+                    details={item.details}
+                    result={item.result}
+                    image={item.image}
+                    index={index}
+                  />
+                </div>
               </ScrollReveal>
             ))}
           </div>
@@ -412,24 +378,30 @@ export default function Home() {
             <div className="lg:col-span-2 space-y-8">
               <div>
                 <h3 className="text-sm font-medium text-gradient uppercase tracking-widest mb-5">Contact Info</h3>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <a
                     href="tel:8472208550"
-                    className="flex items-center gap-4 text-[#d0d0d0] hover:text-white transition-colors group"
+                    className="flex items-start gap-4 group"
                   >
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#2563eb]/10 to-[#06b6d4]/10 border border-[#2563eb]/30 flex items-center justify-center group-hover:border-[#06b6d4]/50 transition-colors">
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#2563eb]/10 to-[#06b6d4]/10 border border-[#2563eb]/30 flex items-center justify-center group-hover:border-[#06b6d4]/50 transition-colors flex-shrink-0">
                       <IconPhone className="w-4 h-4 text-[#06b6d4]" />
                     </div>
-                    <span>(847) 220-8550</span>
+                    <div className="flex flex-col pt-1">
+                      <span className="text-[#06b6d4] text-sm font-medium">Call or Text</span>
+                      <span className="text-[#d0d0d0] group-hover:text-white transition-colors">(847) 220-8550</span>
+                    </div>
                   </a>
                   <a
                     href="mailto:Info@KhanMarketingGroup.com"
-                    className="flex items-center gap-4 text-[#d0d0d0] hover:text-white transition-colors group"
+                    className="flex items-start gap-4 group"
                   >
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#2563eb]/10 to-[#06b6d4]/10 border border-[#2563eb]/30 flex items-center justify-center group-hover:border-[#06b6d4]/50 transition-colors">
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#2563eb]/10 to-[#06b6d4]/10 border border-[#2563eb]/30 flex items-center justify-center group-hover:border-[#06b6d4]/50 transition-colors flex-shrink-0">
                       <IconMail className="w-4 h-4 text-[#06b6d4]" />
                     </div>
-                    <span>Info@KhanMarketingGroup.com</span>
+                    <div className="flex flex-col pt-1">
+                      <span className="text-[#06b6d4] text-sm font-medium">Email</span>
+                      <span className="text-[#d0d0d0] group-hover:text-white transition-colors">Info@KhanMarketingGroup.com</span>
+                    </div>
                   </a>
                 </div>
               </div>
@@ -651,11 +623,5 @@ const portfolioItems = [
     details: "Website, Print Materials, Review Growth",
     result: "3.9 → 4.8 stars",
     image: "/portfolio/shifa-home-care.jpg",
-  },
-  {
-    title: "American Physician Group",
-    url: "https://americanphysiciangroup.com",
-    details: "Website Design",
-    image: "/portfolio/american-physician-group.jpg",
   },
 ];
