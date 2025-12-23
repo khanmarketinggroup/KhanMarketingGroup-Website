@@ -712,6 +712,7 @@ const onlinePresenceServices = [
   {
     icon: <IconMapPin className="w-6 h-6" />,
     title: "Google Business Profile",
+    subtitle: undefined,
     price: "$119",
     bullets: [
       "Full profile setup or optimization",
@@ -719,10 +720,13 @@ const onlinePresenceServices = [
       "Service & product listings",
       "Review generation strategy",
     ],
+    note: undefined,
+    unavailable: undefined,
   },
   {
     icon: <IconUsers className="w-6 h-6" />,
     title: "Social Media Setup",
+    subtitle: undefined,
     price: "$119",
     bullets: [
       "Facebook profile setup",
@@ -730,10 +734,13 @@ const onlinePresenceServices = [
       "LinkedIn profile setup",
       "Professional branding",
     ],
+    note: undefined,
+    unavailable: undefined,
   },
   {
     icon: <IconLink className="w-6 h-6" />,
     title: "Domain Setup",
+    subtitle: undefined,
     price: "$99",
     bullets: [
       "Domain registration",
@@ -741,6 +748,8 @@ const onlinePresenceServices = [
       "Keeps your contact info private",
       "Email forwarding setup",
     ],
+    note: undefined,
+    unavailable: undefined,
   },
 ];
 
@@ -749,6 +758,7 @@ const brandingServices = [
   {
     icon: <IconPalette className="w-6 h-6" />,
     title: "Logo Design",
+    subtitle: undefined,
     price: "Starting at $149",
     bullets: [
       "Simple, clean designs",
@@ -757,20 +767,25 @@ const brandingServices = [
       "All file formats you need",
     ],
     note: "Need something more comprehensive? Reach out.",
+    unavailable: undefined,
   },
   {
     icon: <IconMailForward className="w-6 h-6" />,
     title: "Professional Email Setup",
+    subtitle: undefined,
     price: "$99",
     bullets: [
       "Professional email address (like you@yourbusiness.com)",
       "Setup in your email app (Outlook, Gmail, etc.)",
       "Secure setup & testing",
     ],
+    note: undefined,
+    unavailable: undefined,
   },
   {
     icon: <IconPrinter className="w-6 h-6" />,
     title: "Print Design",
+    subtitle: undefined,
     price: "Starting at $150",
     bullets: [
       "Business cards",
@@ -778,6 +793,8 @@ const brandingServices = [
       "Brochures",
       "Banners & signage",
     ],
+    note: undefined,
+    unavailable: undefined,
   },
 ];
 
@@ -794,11 +811,13 @@ const monthlyServices = [
       "Ad spend included",
       "Monthly performance reports",
     ],
+    note: undefined,
     unavailable: true,
   },
   {
     icon: <IconBrandInstagram className="w-6 h-6" />,
     title: "Social Media Posts",
+    subtitle: undefined,
     price: "$300/mo",
     bullets: [
       "Facebook & Instagram content",
@@ -806,6 +825,7 @@ const monthlyServices = [
       "Custom graphics",
       "Caption writing",
     ],
+    note: undefined,
     unavailable: true,
   },
 ];
