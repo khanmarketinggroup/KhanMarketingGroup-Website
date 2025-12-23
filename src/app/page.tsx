@@ -11,6 +11,7 @@ import { BackgroundPaths } from "@/components/ui/background-paths";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { BusinessStarterHub } from "@/components/ui/business-starter-hub";
 import { WebsiteTiers } from "@/components/ui/website-tiers";
+import { AnimatedUnderline } from "@/components/ui/animated-underline";
 import {
   IconAd,
   IconMapPin,
@@ -47,14 +48,13 @@ export default function Home() {
       
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/[0.05]">
-        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between md:justify-between">
-          {/* Mobile: empty spacer for centering */}
-          <div className="w-10 md:hidden" />
-          
-          {/* Logo - centered on mobile, left on desktop */}
-          <div className="md:flex-none flex flex-col items-center">
-            <Logo variant="white" size="sm" />
-            <div className="w-20 h-0.5 mt-1 rounded-full bg-gradient-to-r from-transparent via-[#06b6d4] to-transparent" />
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 md:py-2 flex items-center justify-between">
+          {/* Logo - left-aligned on all screens */}
+          <div className="flex flex-col">
+            <div className="scale-[0.6] md:scale-100 origin-left md:origin-center">
+              <Logo variant="white" size="sm" type="short" />
+            </div>
+            <AnimatedUnderline className="w-[39px] md:w-20 mt-0.5 md:mt-1 self-start md:self-center" />
           </div>
           
           {/* Desktop Nav */}
@@ -100,7 +100,7 @@ export default function Home() {
               transition={{ duration: 0.2 }}
               className="md:hidden bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/[0.05] overflow-hidden"
             >
-              <div className="px-6 py-6 flex flex-col gap-4">
+              <div className="px-4 py-5 flex flex-col gap-3">
                 <a 
                   href="#services" 
                   onClick={handleNavClick}
@@ -136,10 +136,19 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 min-h-screen flex items-center overflow-hidden pt-20">
-        <div className="max-w-4xl mx-auto px-6 w-full text-center">
+      <section className="relative z-10 min-h-screen flex items-center overflow-hidden pt-20 md:pt-20">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 w-full text-center">
+          {/* Full Logo */}
+          <div
+            className={`flex justify-center mb-6 md:mb-8 transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          >
+            <div className="scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100">
+              <Logo variant="white" size="lg" type="full" />
+            </div>
+          </div>
+
           <h1
-            className={`text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-[1.15] mb-6 tracking-tight transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-[1.15] mb-4 md:mb-6 tracking-tight transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
           >
             <span className="md:whitespace-nowrap">Marketing that actually works</span>
@@ -148,7 +157,7 @@ export default function Home() {
           </h1>
 
           <p
-            className={`text-lg text-[#d4d4d4] mb-10 leading-relaxed max-w-2xl mx-auto transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`text-base md:text-lg text-[#d4d4d4] mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
             Websites, ads, and Google listings that bring in customers — not just clicks.
             Built by someone who&apos;s done it for their own business first.
@@ -363,11 +372,11 @@ export default function Home() {
       <section id="contact" className="py-32 px-6 relative z-10">
         <div className="max-w-5xl mx-auto relative">
           <div className="text-center mb-16">
-            <h2 
+            <h2
               className="text-3xl md:text-5xl font-semibold text-white mb-4 tracking-tight"
               style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
             >
-              Not Sure Where to Start?
+              Let's Talk
             </h2>
             <p className="text-[#d4d4d4] text-lg">
               Let&apos;s talk about what you need. No pressure, no sales pitch.
