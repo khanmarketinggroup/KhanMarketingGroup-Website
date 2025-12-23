@@ -6,12 +6,15 @@ import { MovingBorder } from "@/components/ui/moving-border";
 
 const serviceOptions = [
   "Website",
-  "Google & Social Media Ads",
   "Google Business Profile",
-  "Social Media Posts",
-  "Print Design",
+  "Social Media Setup",
   "Logo Design",
+  "Domain Setup",
+  "Professional Email Setup",
+  "Print Design",
   "Business Starter Package",
+  "Google & Social Media Ads (Waitlist)",
+  "Social Media Posts (Waitlist)",
 ];
 
 const contactMethods = ["Call", "Text", "Email"];

@@ -1,28 +1,55 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { 
-    IconWorld, 
-    IconMapPin, 
-    IconBrandInstagram, 
-    IconPalette, 
+import {
+    IconWorld,
+    IconMapPin,
+    IconBrandInstagram,
+    IconPalette,
     IconLink,
-    IconSparkles
+    IconSparkles,
+    IconMailForward
 } from "@tabler/icons-react";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 
 const services = [
-    { icon: IconWorld, label: "Landing Page" },
-    { icon: IconMapPin, label: "GBP Setup" },
-    { icon: IconBrandInstagram, label: "Social Media" },
-    { icon: IconPalette, label: "Logo Design" },
-    { icon: IconLink, label: "Domain Setup" },
+    {
+        icon: IconWorld,
+        label: "Landing Page",
+        description: "Professional single-page website to showcase your business"
+    },
+    {
+        icon: IconMapPin,
+        label: "GBP Setup",
+        description: "Get found on Google Maps & Search with a fully optimized profile"
+    },
+    {
+        icon: IconBrandInstagram,
+        label: "Social Media Setup",
+        description: "Facebook, Instagram & LinkedIn profiles set up with your branding"
+    },
+    {
+        icon: IconPalette,
+        label: "Logo Design",
+        description: "Simple, clean logo design with 2 concepts and 2 revision rounds"
+    },
+    {
+        icon: IconLink,
+        label: "Domain Setup",
+        description: "Your own .com domain registered and configured"
+    },
+    {
+        icon: IconMailForward,
+        label: "Professional Email Setup",
+        description: "Professional email like you@yourbusiness.com"
+    },
 ];
 
 export function BusinessStarterHub() {
     const ref = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [activeTooltip, setActiveTooltip] = useState<number | null>(null);
 
     useEffect(() => {
         setMounted(true);
@@ -30,7 +57,7 @@ export function BusinessStarterHub() {
 
     useEffect(() => {
         if (!mounted) return;
-        
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -48,6 +75,19 @@ export function BusinessStarterHub() {
         return () => observer.disconnect();
     }, [mounted]);
 
+    useEffect(() => {
+        const handleClickOutside = () => setActiveTooltip(null);
+        if (activeTooltip !== null) {
+            document.addEventListener('click', handleClickOutside);
+            return () => document.removeEventListener('click', handleClickOutside);
+        }
+    }, [activeTooltip]);
+
+    const handleIconClick = (e: React.MouseEvent, index: number) => {
+        e.stopPropagation();
+        setActiveTooltip(activeTooltip === index ? null : index);
+    };
+
     return (
         <div ref={ref} className="relative flex flex-col items-center py-16">
             {/* Service badges at top */}
@@ -55,15 +95,30 @@ export function BusinessStarterHub() {
                 {services.map((service, index) => (
                     <div
                         key={service.label}
-                        className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#111111] border border-white/[0.08]"
+                        className="relative group cursor-pointer"
+                        onClick={(e) => handleIconClick(e, index)}
                         style={{
                             opacity: mounted ? (isVisible ? 1 : 0) : 1,
                             transform: mounted ? (isVisible ? 'translateY(0)' : 'translateY(-30px)') : 'none',
                             transition: `all 0.5s ease-out ${index * 0.1}s`,
                         }}
                     >
-                        <service.icon className="w-4 h-4 text-[#06b6d4]" />
-                        <span className="text-sm text-white">{service.label}</span>
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#111111] border border-white/[0.08] hover:border-[#06b6d4]/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all duration-300">
+                            <service.icon className="w-4 h-4 text-[#06b6d4]" />
+                            <span className="text-sm text-white">{service.label}</span>
+                        </div>
+
+                        {/* Tooltip - appears ABOVE */}
+                        {activeTooltip === index && (
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 z-50 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                                <div className="bg-[#111111] border border-white/[0.1] rounded-xl p-4 shadow-2xl">
+                                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#111111] border-r border-b border-white/[0.1] rotate-45" />
+                                    <p className="text-[#d4d4d4] text-sm leading-relaxed relative z-10">
+                                        {service.description}
+                                    </p>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
@@ -78,10 +133,10 @@ export function BusinessStarterHub() {
                     transition: 'opacity 1s ease-out 0.5s',
                 }}
             >
-                {[0, 1, 2, 3, 4].map((i) => (
+                {[0, 1, 2, 3, 4, 5].map((i) => (
                     <path
                         key={i}
-                        d={`M ${80 + i * 60} 0 Q ${80 + i * 60} 50, 200 80`}
+                        d={`M ${60 + i * 56} 0 Q ${60 + i * 56} 50, 200 80`}
                         stroke="url(#line-gradient)"
                         strokeWidth="1.5"
                         fill="none"
@@ -130,7 +185,7 @@ export function BusinessStarterHub() {
 
                     {/* Price */}
                     <div className="flex items-center justify-center mb-8">
-                        <span className="text-4xl md:text-5xl font-bold text-gradient">$600</span>
+                        <span className="text-4xl md:text-5xl font-bold text-gradient">$700</span>
                     </div>
 
                     {/* Button */}
@@ -139,7 +194,7 @@ export function BusinessStarterHub() {
                             as="a"
                             href="#contact"
                             borderRadius="9999px"
-                            containerClassName="h-14 w-44"
+                            containerClassName="h-14 w-44 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-shadow duration-300"
                             className="text-base px-8 tracking-wide"
                             duration={3000}
                         >

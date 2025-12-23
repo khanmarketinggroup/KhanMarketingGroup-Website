@@ -26,6 +26,9 @@ import {
   IconMapPinFilled,
   IconMenu2,
   IconX,
+  IconLink,
+  IconMailForward,
+  IconUsers,
 } from "@tabler/icons-react";
 
 export default function Home() {
@@ -140,7 +143,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 md:px-6 w-full text-center">
           {/* Full Logo */}
           <div
-            className={`flex justify-center mb-6 md:mb-8 transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`flex justify-center mt-12 md:mt-16 mb-6 md:mb-8 transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
             <div className="scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100">
               <Logo variant="white" size="lg" type="full" />
@@ -159,7 +162,7 @@ export default function Home() {
           <p
             className={`text-base md:text-lg text-[#d4d4d4] mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            Websites, ads, and Google listings that bring in customers — not just clicks.
+            Websites and Google listings that bring in customers — not just clicks.
             Built by someone who&apos;s done it for their own business first.
           </p>
 
@@ -170,7 +173,7 @@ export default function Home() {
               as="a"
               href="#contact"
               borderRadius="9999px"
-              containerClassName="h-14 w-44"
+              containerClassName="h-14 w-44 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-shadow duration-300"
               className="text-base px-8 tracking-wide"
               duration={3000}
             >
@@ -179,7 +182,7 @@ export default function Home() {
 
             <a
               href="#services"
-              className="px-8 py-4 rounded-full text-[#d4d4d4] hover:text-white border border-white/[0.1] hover:border-white/25 transition-all duration-300 text-base tracking-wide"
+              className="px-8 py-4 rounded-full text-[#d4d4d4] hover:text-white border border-white/[0.1] hover:border-white/25 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300 text-base tracking-wide"
             >
               View Services
             </a>
@@ -202,31 +205,14 @@ export default function Home() {
             </ScrollReveal>
           </div>
 
-          {/* Website Tiers */}
+          {/* ROW 1 - Website Tiers */}
           <WebsiteTiers tiers={websiteTiers} />
 
-          {/* Other Services - First Row (3 cards) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
-            {services.slice(0, 3).map((service, index) => (
-              <ScrollReveal key={service.title} delay={index * 0.15}>
-                <ServiceCard
-                  icon={service.icon}
-                  title={service.title}
-                  subtitle={service.subtitle}
-                  price={service.price}
-                  bullets={service.bullets}
-                  note={service.note}
-                  index={index}
-                />
-              </ScrollReveal>
-            ))}
-          </div>
-
-          {/* Other Services - Second Row (2 cards centered) */}
-          <div className="flex justify-center gap-5">
-            {services.slice(3).map((service, index) => (
-              <ScrollReveal key={service.title} delay={(index + 3) * 0.15}>
-                <div className="w-full md:w-[320px] lg:w-[380px]">
+          {/* ROW 2 - Online Presence Setup */}
+          <div className="mb-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {onlinePresenceServices.map((service, index) => (
+                <ScrollReveal key={service.title} delay={index * 0.1}>
                   <ServiceCard
                     icon={service.icon}
                     title={service.title}
@@ -234,11 +220,54 @@ export default function Home() {
                     price={service.price}
                     bullets={service.bullets}
                     note={service.note}
-                    index={index + 3}
+                    index={index}
+                    unavailable={service.unavailable}
                   />
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+
+          {/* ROW 3 - Branding */}
+          <div className="mb-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {brandingServices.map((service, index) => (
+                <ScrollReveal key={service.title} delay={index * 0.1}>
+                  <ServiceCard
+                    icon={service.icon}
+                    title={service.title}
+                    subtitle={service.subtitle}
+                    price={service.price}
+                    bullets={service.bullets}
+                    note={service.note}
+                    index={index}
+                    unavailable={service.unavailable}
+                  />
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+
+          {/* ROW 4 - Monthly Services (centered) */}
+          <div className="mt-8">
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[800px] w-full">
+                {monthlyServices.map((service, index) => (
+                  <ScrollReveal key={service.title} delay={index * 0.1}>
+                    <ServiceCard
+                      icon={service.icon}
+                      title={service.title}
+                      subtitle={service.subtitle}
+                      price={service.price}
+                      bullets={service.bullets}
+                      note={service.note}
+                      index={index}
+                      unavailable={service.unavailable}
+                    />
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -250,16 +279,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* Why Khan Marketing Group Exists Section */}
       <section id="about" className="py-32 px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <ScrollReveal direction="up">
-              <h2 
+              <h2
                 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight"
                 style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
               >
-                About the Founder
+                Why Khan Marketing Group Exists
               </h2>
               <div className="w-24 h-[2px] premium-divider mx-auto" />
             </ScrollReveal>
@@ -270,25 +299,184 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <p className="text-3xl font-semibold text-white" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
-              I&apos;m Omair Khan.
-            </p>
+            {/* Opening Story */}
             <div className="space-y-5 text-[#d4d4d4] text-lg leading-relaxed">
               <p>
-                I run the complete backend of Clean & Green Property Care — marketing, operations, and business development. My partner handles the services and manages our team. I built the website, set up the Google listing, ran the ads, and figured out what actually works. Today the company has{" "}
-                <span className="text-gradient font-semibold">40+ five-star reviews</span> and steady customers.
+                I paid <span className="text-[#06b6d4] font-semibold">$2,500</span> to a marketing company to set up my online presence — website, Google Business Profile, professional email, the basics.
               </p>
               <p>
-                I also helped Shifa Home Care&apos;s Bloomingdale office go from{" "}
-                <span className="text-gradient font-semibold">3.9 to 4.8 stars</span> with 20+ reviews.
+                What I got back? A Wix website so bad I had to pay someone else <span className="text-[#06b6d4] font-semibold">$500</span> to fix it. That&apos;s <span className="text-[#06b6d4] font-semibold">$3,000</span> spent — and I still wasn&apos;t happy with the result.
               </p>
               <p>
-                I learned marketing by doing it for a real business first. Now I help other local business owners do the same — without the confusing jargon or overpriced agencies.
+                So I learned to build websites myself. Now I do it the right way through Khan Marketing Group.
               </p>
-              <p className="text-white font-semibold text-xl pt-2">
-                You work directly with me. No account managers, no runaround.
+              <p className="text-white font-medium">
+                Here&apos;s what nobody tells you about these platforms:
+              </p>
+            </div>
+
+            {/* Cost Comparison Section */}
+            <div className="my-12">
+              <h3 className="text-2xl font-semibold text-white mb-6 text-center" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                The Real Cost of &quot;Affordable&quot; Website Builders
+              </h3>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                {/* GoDaddy Card */}
+                <div className="rounded-2xl border border-white/[0.08] bg-[#111111] p-6 hover:border-[#ef4444]/30 transition-all duration-300">
+                  <h4 className="text-xl font-semibold text-white mb-4" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                    GoDaddy Website Builder
+                  </h4>
+                  <div className="space-y-3 text-[#d4d4d4]">
+                    <div className="flex justify-between items-center">
+                      <span>Basic plan:</span>
+                      <span className="text-[#ef4444] font-semibold">$204/year</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Premium plan:</span>
+                      <span className="text-[#ef4444] font-semibold">$360/year</span>
+                    </div>
+                    <p className="text-sm italic text-[#a3a3a3] pt-2">
+                      And that&apos;s BEFORE your domain and email
+                    </p>
+                  </div>
+                </div>
+
+                {/* Wix Card */}
+                <div className="rounded-2xl border border-white/[0.08] bg-[#111111] p-6 hover:border-[#ef4444]/30 transition-all duration-300">
+                  <h4 className="text-xl font-semibold text-white mb-4" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                    Wix
+                  </h4>
+                  <div className="space-y-3 text-[#d4d4d4]">
+                    <div className="flex justify-between items-center">
+                      <span>Core plan:</span>
+                      <span className="text-[#ef4444] font-semibold">$348/year</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Domain renewal:</span>
+                      <span className="text-[#ef4444] font-semibold">$21/year</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Email (resold at markup):</span>
+                      <span className="text-[#ef4444] font-semibold">$168/year</span>
+                    </div>
+                    <div className="border-t border-white/[0.08] pt-3 mt-3">
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold">Total:</span>
+                        <span className="text-[#ef4444] font-bold text-xl">$537/year</span>
+                      </div>
+                      <p className="text-sm italic text-[#a3a3a3] pt-2">
+                        Plus, they resell email services at nearly double the direct price.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4 text-[#d4d4d4] text-lg leading-relaxed">
+                <p>
+                  With Wix, your website, domain, and email are all locked to their platform — and they charge a premium for it. GoDaddy is more flexible, but you&apos;re still paying hundreds per year for something that doesn&apos;t have to cost that much. <span className="text-white font-semibold">With us, you own everything outright.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* How We Do It Differently */}
+            <div className="my-12">
+              <h3 className="text-2xl font-semibold text-white mb-6" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                How We Do It Differently
+              </h3>
+
+              <div className="space-y-5 text-[#d4d4d4] text-lg leading-relaxed">
+                <p>
+                  I build your website with clean code that <span className="text-white font-semibold">YOU actually own</span> — hosted free on modern platforms. Your domain is registered in <span className="text-white font-semibold">YOUR name</span>. Professional email set up directly for you.
+                </p>
+
+                <div className="rounded-2xl border border-[#06b6d4]/30 bg-[#06b6d4]/5 p-6 my-6">
+                  <p className="text-white font-medium mb-4">After the initial build, here&apos;s what you&apos;re looking at:</p>
+                  <div className="space-y-2 text-[#d4d4d4]">
+                    <div className="flex justify-between items-center">
+                      <span>Domain:</span>
+                      <span className="text-[#06b6d4] font-semibold">Around $20/year</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Professional email:</span>
+                      <span className="text-[#06b6d4] font-semibold">Around $85/year</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Website hosting:</span>
+                      <span className="text-[#06b6d4] font-semibold">FREE</span>
+                    </div>
+                    <div className="border-t border-[#06b6d4]/30 pt-3 mt-3">
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold text-white">Total:</span>
+                        <span className="text-[#06b6d4] font-bold text-2xl">Around $105/year</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-[#F5D547] text-base mt-4 leading-relaxed italic text-left font-medium">
+                    These are your only ongoing costs — paid directly to the domain provider and email provider, not to us.
+                    <br /><br />
+                    Our fee is the one-time build cost. If you want help managing your website after launch, we can customize a plan based on what you need.
+                  </p>
+                </div>
+
+                <p className="text-xl text-white font-semibold">
+                  That&apos;s it. No $400+ yearly fees. No surprise renewals.
+                </p>
+
+                <p>
+                  And if you ever want to walk away? I&apos;ll hand you the code. It&apos;s yours. No questions asked.
+                </p>
+              </div>
+            </div>
+
+            {/* Proof It Works */}
+            <div className="my-12">
+              <h3 className="text-2xl font-semibold text-white mb-6 text-center" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                Proof It Works
+              </h3>
+
+              <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-[#111111] border border-white/[0.06]">
+                  <div className="w-2 h-2 rounded-full bg-[#06b6d4] mt-2 flex-shrink-0" />
+                  <div>
+                    <p className="text-white font-medium">Clean & Green Property Care</p>
+                    <p className="text-[#06b6d4] text-sm">40+ five-star Google reviews</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-[#111111] border border-white/[0.06]">
+                  <div className="w-2 h-2 rounded-full bg-[#06b6d4] mt-2 flex-shrink-0" />
+                  <div>
+                    <p className="text-white font-medium">Shifa Home Care</p>
+                    <p className="text-[#06b6d4] text-sm">Went from 3.9 to 4.8 stars</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-[#111111] border border-white/[0.06]">
+                  <div className="w-2 h-2 rounded-full bg-[#06b6d4] mt-2 flex-shrink-0" />
+                  <div>
+                    <p className="text-white font-medium">Khan Marketing Group</p>
+                    <p className="text-[#a3a3a3] text-sm">Yes, this site too</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* The Bottom Line */}
+            <div className="my-12 space-y-6 text-[#d4d4d4] text-lg leading-relaxed">
+              <h3 className="text-2xl font-semibold text-white" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                The Bottom Line
+              </h3>
+
+              <p>
+                That&apos;s why the Business Starter Package exists — everything you need to launch your online presence, built the right way, so you actually own it. No lock-in.
+              </p>
+
+              <p className="text-white font-bold text-xl pt-4">
+                You work directly with the founder. No account managers. No runaround.
               </p>
             </div>
           </motion.div>
@@ -519,23 +707,12 @@ export default function Home() {
   );
 }
 
-const services = [
-  {
-    icon: <IconAd className="w-6 h-6" />,
-    title: "Google & Meta Ads",
-    subtitle: "(Google + Facebook + Instagram)",
-    price: "$1,000/mo",
-    bullets: [
-      "Google Search & Display ads",
-      "Facebook & Instagram ads",
-      "Ad spend included",
-      "Monthly performance reports",
-    ],
-  },
+// ROW 2 - ONLINE PRESENCE SETUP
+const onlinePresenceServices = [
   {
     icon: <IconMapPin className="w-6 h-6" />,
     title: "Google Business Profile",
-    price: "$99",
+    price: "$119",
     bullets: [
       "Full profile setup or optimization",
       "Photo uploads",
@@ -544,14 +721,51 @@ const services = [
     ],
   },
   {
-    icon: <IconBrandInstagram className="w-6 h-6" />,
-    title: "Social Media Posts",
-    price: "$300/mo",
+    icon: <IconUsers className="w-6 h-6" />,
+    title: "Social Media Setup",
+    price: "$119",
     bullets: [
-      "Facebook & Instagram content",
-      "3-4 posts per week",
-      "Custom graphics",
-      "Caption writing",
+      "Facebook profile setup",
+      "Instagram profile setup",
+      "LinkedIn profile setup",
+      "Professional branding",
+    ],
+  },
+  {
+    icon: <IconLink className="w-6 h-6" />,
+    title: "Domain Setup",
+    price: "$99",
+    bullets: [
+      "Domain registration",
+      "Technical setup to connect your web address",
+      "Keeps your contact info private",
+      "Email forwarding setup",
+    ],
+  },
+];
+
+// ROW 3 - BRANDING
+const brandingServices = [
+  {
+    icon: <IconPalette className="w-6 h-6" />,
+    title: "Logo Design",
+    price: "Starting at $149",
+    bullets: [
+      "Simple, clean designs",
+      "2 initial concepts",
+      "2 revision rounds",
+      "All file formats you need",
+    ],
+    note: "Need something more comprehensive? Reach out.",
+  },
+  {
+    icon: <IconMailForward className="w-6 h-6" />,
+    title: "Professional Email Setup",
+    price: "$99",
+    bullets: [
+      "Professional email address (like you@yourbusiness.com)",
+      "Setup in your email app (Outlook, Gmail, etc.)",
+      "Secure setup & testing",
     ],
   },
   {
@@ -565,34 +779,51 @@ const services = [
       "Banners & signage",
     ],
   },
+];
+
+// ROW 4 - MONTHLY SERVICES
+const monthlyServices = [
   {
-    icon: <IconPalette className="w-6 h-6" />,
-    title: "Logo Design",
-    price: "Starting at $99",
+    icon: <IconAd className="w-6 h-6" />,
+    title: "Google & Meta Ads",
+    subtitle: "(Google + Facebook + Instagram)",
+    price: "$1,000/mo",
     bullets: [
-      "Simple, clean designs",
-      "2 initial concepts",
-      "2 revision rounds",
-      "Final files (PNG, SVG, PDF)",
+      "Google Search & Display ads",
+      "Facebook & Instagram ads",
+      "Ad spend included",
+      "Monthly performance reports",
     ],
-    note: "Need something more comprehensive? Reach out.",
+    unavailable: true,
+  },
+  {
+    icon: <IconBrandInstagram className="w-6 h-6" />,
+    title: "Social Media Posts",
+    price: "$300/mo",
+    bullets: [
+      "Facebook & Instagram content",
+      "3-4 posts per week",
+      "Custom graphics",
+      "Caption writing",
+    ],
+    unavailable: true,
   },
 ];
 
 const websiteTiers = [
   {
     title: "Basic Landing Page",
-    price: "$250",
+    price: "$249",
     bullets: [
       "Single page design",
       "Mobile responsive",
-      "SEO-friendly structure",
+      "Optimized for search engines",
       "Custom contact form",
     ],
   },
   {
     title: "Standard Website",
-    price: "$500",
+    price: "$649",
     bullets: [
       "3-5 pages",
       "Mobile responsive",
@@ -616,9 +847,9 @@ const whyKmgReasons = [
   "One-on-one access to the founder",
   "Fast responses (usually same day)",
   "No long-term contracts — you're never locked in",
-  "Ad campaigns managed by Google-certified specialists",
+  "Local business owners ourselves — we know what actually works",
   "We've done this for our own business first — and seen real results. 40+ five-star Google reviews, plus helping other local businesses grow.",
-  "Transparent pricing — most agencies charge a retainer plus separate ad spend. We bundle everything into one monthly payment, including your ad budget.",
+  "No hidden fees — the price we quote is the price you pay",
 ];
 
 const portfolioItems = [
