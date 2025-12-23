@@ -500,6 +500,9 @@ export default function Home() {
             <p className="text-[#606060] text-sm">
               © 2025 Khan Marketing Group. All rights reserved.
             </p>
+            <p className="text-[#606060] text-sm mt-2 opacity-70">
+              Built in-house
+            </p>
           </div>
         </div>
       </footer>
