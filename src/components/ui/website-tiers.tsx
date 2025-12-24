@@ -26,7 +26,65 @@ function WebsiteTierCard({ tier }: { tier: WebsiteTier; index: number }) {
     setIsFlipped(!isFlipped);
   };
 
-  // All tier cards flip (including Custom Builds)
+  // Static card for Custom Builds (has button)
+  if (tier.hasButton) {
+    return (
+      <div
+        className="relative h-full"
+        style={{ minHeight: "300px" }}
+      >
+        <div className="rounded-2xl overflow-hidden h-full">
+          {/* Card border */}
+          <div className="absolute inset-0 rounded-2xl border border-white/[0.06]" />
+
+          {/* Background */}
+          <div className="absolute inset-[1px] rounded-2xl bg-[#111111]" />
+
+          {/* Static Content */}
+          <div className="relative z-10 p-6 flex flex-col h-full">
+            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#2563eb]/10 to-[#06b6d4]/10 border border-[#2563eb]/20 flex items-center justify-center mb-6 mx-auto">
+              <IconWorld className="w-8 h-8 text-[#06b6d4]" />
+            </div>
+            <h4
+              className="text-xl font-semibold text-white mb-6 text-center"
+              style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
+            >
+              {tier.title}
+            </h4>
+
+            {/* Bullet points */}
+            <ul className="space-y-3 mb-4">
+              {tier.bullets.map((bullet, i) => (
+                <li key={i} className="flex items-start gap-2 text-[#d4d4d4] text-sm">
+                  <span className="text-[#06b6d4] mt-0.5">•</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Push to bottom */}
+            <div className="flex-grow"></div>
+
+            {/* Let's Talk button */}
+            <div className="flex justify-center">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center h-11 px-8 text-sm font-medium text-white rounded-full bg-gradient-to-r from-[#2563eb] to-[#06b6d4] clickable-hover"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Let&apos;s Talk
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Flipping cards for regular tiers
   return (
     <div
       className="group relative h-full cursor-pointer clickable-hover"
@@ -107,23 +165,6 @@ function WebsiteTierCard({ tier }: { tier: WebsiteTier; index: number }) {
                 </li>
               ))}
             </ul>
-
-            {/* Let's Talk button for Custom Builds */}
-            {tier.hasButton && (
-              <div className="mb-4 flex justify-center">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center h-11 px-8 text-sm font-medium text-white rounded-full bg-gradient-to-r from-[#2563eb] to-[#06b6d4] clickable-hover"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  Let&apos;s Talk
-                </a>
-              </div>
-            )}
 
             {/* Push to bottom */}
             <div className="flex-grow"></div>

@@ -276,14 +276,27 @@ export default function Home() {
       </section>
 
       {/* Starter Package Section */}
-      <section className="py-16 px-6 relative z-10">
+      <section className="pt-16 pb-8 px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
           <BusinessStarterHub />
+
+          {/* Simple vertical lines flowing down */}
+          <div className="flex justify-center gap-8 -mt-[70px] mb-[3px]">
+            {[0, 1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="w-[1px] h-[60px]"
+                style={{
+                  background: 'linear-gradient(to bottom, rgba(34, 211, 238, 0.6), rgba(34, 211, 238, 0))',
+                }}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Why Khan Marketing Group Exists Section */}
-      <section id="about" className="py-32 px-6 relative z-10">
+      {/* Why This Package Exists Section */}
+      <section id="about" className="-mt-8 pb-32 px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -296,13 +309,20 @@ export default function Home() {
             <div className="relative flex justify-center mb-16">
               {/* Floating Tab */}
               <div
+                onClick={() => {
+                  setButtonPressed(true);
+                  setTimeout(() => {
+                    setButtonPressed(false);
+                    setStoryExpanded(!storyExpanded);
+                  }, 100);
+                }}
                 className="absolute -top-3 z-20 bg-[#06b6d4] text-black px-4 py-1.5 rounded-full text-sm font-bold"
                 style={{
                   boxShadow: '0 4px 12px rgba(6, 182, 212, 0.4)',
                   cursor: 'pointer'
                 }}
               >
-                {storyExpanded ? 'Click to close ▲' : 'Click to read ▼'}
+                {storyExpanded ? 'Close ▲' : 'Read the story ▼'}
               </div>
 
               {/* Main Button */}
@@ -328,7 +348,7 @@ export default function Home() {
                   e.currentTarget.style.boxShadow = '';
                 }}
               >
-                Why Khan Marketing Group Exists
+                Why This Package Exists
               </button>
             </div>
 
