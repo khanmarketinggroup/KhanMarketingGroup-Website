@@ -29,6 +29,10 @@ import {
   IconLink,
   IconMailForward,
   IconUsers,
+  IconWorld,
+  IconSettings,
+  IconBrush,
+  IconRefresh,
 } from "@tabler/icons-react";
 
 export default function Home() {
@@ -36,6 +40,10 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [storyExpanded, setStoryExpanded] = useState(false);
   const [buttonPressed, setButtonPressed] = useState(false);
+  const [websitesExpanded, setWebsitesExpanded] = useState(false);
+  const [setupExpanded, setSetupExpanded] = useState(false);
+  const [designExpanded, setDesignExpanded] = useState(false);
+  const [ongoingExpanded, setOngoingExpanded] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -56,20 +64,23 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/[0.05]">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 md:py-2 flex items-center justify-between">
           {/* Logo - left-aligned on all screens */}
-          <div className="flex flex-col">
+          <a href="#" className="flex flex-col cursor-pointer" onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}>
             <div className="scale-[0.6] md:scale-100 origin-left md:origin-center">
               <Logo variant="white" size="sm" type="short" />
             </div>
             <AnimatedUnderline className="w-[39px] md:w-20 mt-0.5 md:mt-1 self-start md:self-center" />
-          </div>
+          </a>
           
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-10">
-            <a href="#services" className="nav-link text-[#d4d4d4] text-sm tracking-wide">
-              Services
-            </a>
             <a href="#about" className="nav-link text-[#d4d4d4] text-sm tracking-wide">
               About
+            </a>
+            <a href="#services" className="nav-link text-[#d4d4d4] text-sm tracking-wide">
+              Services
             </a>
             <a href="#portfolio" className="nav-link text-[#d4d4d4] text-sm tracking-wide">
               Portfolio
@@ -108,18 +119,18 @@ export default function Home() {
             >
               <div className="px-4 py-5 flex flex-col gap-3">
                 <a
-                  href="#services"
-                  onClick={handleNavClick}
-                  className="nav-link text-[#d4d4d4] text-base py-2"
-                >
-                  Services
-                </a>
-                <a
                   href="#about"
                   onClick={handleNavClick}
                   className="nav-link text-[#d4d4d4] text-base py-2"
                 >
                   About
+                </a>
+                <a
+                  href="#services"
+                  onClick={handleNavClick}
+                  className="nav-link text-[#d4d4d4] text-base py-2"
+                >
+                  Services
                 </a>
                 <a
                   href="#portfolio"
@@ -142,7 +153,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 min-h-screen flex items-center overflow-hidden pt-20 md:pt-20">
+      <section className="relative z-10 min-h-screen flex items-center overflow-hidden pt-16 md:pt-16">
         <div className="max-w-4xl mx-auto px-4 md:px-6 w-full text-center">
           {/* Full Logo */}
           <div
@@ -193,90 +204,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-32 px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <ScrollReveal direction="up">
-              <h2 
-                className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight"
-                style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
-              >
-                Our Services
-              </h2>
-              <div className="w-24 h-[2px] premium-divider mx-auto" />
-            </ScrollReveal>
-          </div>
-
-          {/* ROW 1 - Website Tiers */}
-          <WebsiteTiers tiers={websiteTiers} />
-
-          {/* ROW 2 - Online Presence Setup */}
-          <div className="mb-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {onlinePresenceServices.map((service, index) => (
-                <ScrollReveal key={service.title} delay={index * 0.1}>
-                  <ServiceCard
-                    icon={service.icon}
-                    title={service.title}
-                    subtitle={service.subtitle}
-                    price={service.price}
-                    bullets={service.bullets}
-                    note={service.note}
-                    index={index}
-                    unavailable={service.unavailable}
-                  />
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-
-          {/* ROW 3 - Branding */}
-          <div className="mb-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {brandingServices.map((service, index) => (
-                <ScrollReveal key={service.title} delay={index * 0.1}>
-                  <ServiceCard
-                    icon={service.icon}
-                    title={service.title}
-                    subtitle={service.subtitle}
-                    price={service.price}
-                    bullets={service.bullets}
-                    note={service.note}
-                    index={index}
-                    unavailable={service.unavailable}
-                  />
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-
-          {/* ROW 4 - Monthly Services (centered) */}
-          <div className="mt-8">
-            <div className="flex justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[800px] w-full">
-                {monthlyServices.map((service, index) => (
-                  <ScrollReveal key={service.title} delay={index * 0.1}>
-                    <ServiceCard
-                      icon={service.icon}
-                      title={service.title}
-                      subtitle={service.subtitle}
-                      price={service.price}
-                      bullets={service.bullets}
-                      note={service.note}
-                      index={index}
-                      unavailable={service.unavailable}
-                    />
-                  </ScrollReveal>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Starter Package Section */}
-      <section className="pt-16 pb-8 px-6 relative z-10">
+      <section className="pt-12 pb-6 px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
           <BusinessStarterHub />
 
@@ -296,7 +225,7 @@ export default function Home() {
       </section>
 
       {/* Why This Package Exists Section */}
-      <section id="about" className="-mt-8 pb-32 px-6 relative z-10">
+      <section id="about" className="-mt-6 pb-24 px-6 relative z-10 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -643,8 +572,238 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section id="services" className="py-24 px-6 relative z-10 scroll-mt-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <ScrollReveal direction="up">
+              <h2
+                className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight"
+                style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
+              >
+                Our Services
+              </h2>
+              <div className="w-24 h-[2px] premium-divider mx-auto" />
+            </ScrollReveal>
+          </div>
+
+          {/* Websites Category */}
+          <div className="mb-8">
+            <div
+              onClick={() => setWebsitesExpanded(!websitesExpanded)}
+              className="relative flex items-center justify-between mb-4 p-6 rounded-2xl bg-[#111111] border border-white/[0.06] hover:border-[#06b6d4]/40 transition-all duration-300 cursor-pointer group"
+              style={{
+                boxShadow: '0 0 0 rgba(6, 182, 212, 0)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 20px rgba(6, 182, 212, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 0 rgba(6, 182, 212, 0)';
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <IconWorld className="w-6 h-6 text-[#06b6d4]" />
+                <h3
+                  className="text-2xl font-semibold text-white"
+                  style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
+                >
+                  Websites
+                </h3>
+              </div>
+              <div className="px-4 py-2 rounded-full bg-[#0a0a0a] border border-[#06b6d4]/30 text-[#06b6d4] text-sm group-hover:border-[#06b6d4]/60 transition-all">
+                {websitesExpanded ? 'Click to close ▲' : 'Click to open ▼'}
+              </div>
+            </div>
+            <motion.div
+              initial={false}
+              animate={{
+                height: websitesExpanded ? 'auto' : 0,
+                opacity: websitesExpanded ? 1 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <WebsiteTiers tiers={websiteTiers} />
+            </motion.div>
+          </div>
+
+          {/* Setup Services Category */}
+          <div className="mb-8">
+            <div
+              onClick={() => setSetupExpanded(!setupExpanded)}
+              className="relative flex items-center justify-between mb-4 p-6 rounded-2xl bg-[#111111] border border-white/[0.06] hover:border-[#06b6d4]/40 transition-all duration-300 cursor-pointer group"
+              style={{
+                boxShadow: '0 0 0 rgba(6, 182, 212, 0)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 20px rgba(6, 182, 212, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 0 rgba(6, 182, 212, 0)';
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <IconSettings className="w-6 h-6 text-[#06b6d4]" />
+                <h3
+                  className="text-2xl font-semibold text-white"
+                  style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
+                >
+                  Setup Services
+                </h3>
+              </div>
+              <div className="px-4 py-2 rounded-full bg-[#0a0a0a] border border-[#06b6d4]/30 text-[#06b6d4] text-sm group-hover:border-[#06b6d4]/60 transition-all">
+                {setupExpanded ? 'Click to close ▲' : 'Click to open ▼'}
+              </div>
+            </div>
+            <motion.div
+              initial={false}
+              animate={{
+                height: setupExpanded ? 'auto' : 0,
+                opacity: setupExpanded ? 1 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                {onlinePresenceServices.map((service, index) => (
+                  <ScrollReveal key={service.title} delay={index * 0.1}>
+                    <ServiceCard
+                      icon={service.icon}
+                      title={service.title}
+                      subtitle={service.subtitle}
+                      price={service.price}
+                      bullets={service.bullets}
+                      note={service.note}
+                      index={index}
+                      unavailable={service.unavailable}
+                    />
+                  </ScrollReveal>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Design Category */}
+          <div className="mb-8">
+            <div
+              onClick={() => setDesignExpanded(!designExpanded)}
+              className="relative flex items-center justify-between mb-4 p-6 rounded-2xl bg-[#111111] border border-white/[0.06] hover:border-[#06b6d4]/40 transition-all duration-300 cursor-pointer group"
+              style={{
+                boxShadow: '0 0 0 rgba(6, 182, 212, 0)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 20px rgba(6, 182, 212, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 0 rgba(6, 182, 212, 0)';
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <IconBrush className="w-6 h-6 text-[#06b6d4]" />
+                <h3
+                  className="text-2xl font-semibold text-white"
+                  style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
+                >
+                  Design
+                </h3>
+              </div>
+              <div className="px-4 py-2 rounded-full bg-[#0a0a0a] border border-[#06b6d4]/30 text-[#06b6d4] text-sm group-hover:border-[#06b6d4]/60 transition-all">
+                {designExpanded ? 'Click to close ▲' : 'Click to open ▼'}
+              </div>
+            </div>
+            <motion.div
+              initial={false}
+              animate={{
+                height: designExpanded ? 'auto' : 0,
+                opacity: designExpanded ? 1 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <div className="flex justify-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[800px] w-full">
+                  {brandingServices.map((service, index) => (
+                    <ScrollReveal key={service.title} delay={index * 0.1}>
+                      <ServiceCard
+                        icon={service.icon}
+                        title={service.title}
+                        subtitle={service.subtitle}
+                        price={service.price}
+                        bullets={service.bullets}
+                        note={service.note}
+                        index={index}
+                        unavailable={service.unavailable}
+                      />
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Ongoing Services Category */}
+          <div className="mb-8">
+            <div
+              onClick={() => setOngoingExpanded(!ongoingExpanded)}
+              className="relative flex items-center justify-between mb-4 p-6 rounded-2xl bg-[#111111] border border-white/[0.06] hover:border-[#06b6d4]/40 transition-all duration-300 cursor-pointer group"
+              style={{
+                boxShadow: '0 0 0 rgba(6, 182, 212, 0)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 20px rgba(6, 182, 212, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 0 rgba(6, 182, 212, 0)';
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <IconRefresh className="w-6 h-6 text-[#06b6d4]" />
+                <h3
+                  className="text-2xl font-semibold text-white"
+                  style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
+                >
+                  Ongoing Services
+                </h3>
+              </div>
+              <div className="px-4 py-2 rounded-full bg-[#0a0a0a] border border-[#06b6d4]/30 text-[#06b6d4] text-sm group-hover:border-[#06b6d4]/60 transition-all">
+                {ongoingExpanded ? 'Click to close ▲' : 'Click to open ▼'}
+              </div>
+            </div>
+            <motion.div
+              initial={false}
+              animate={{
+                height: ongoingExpanded ? 'auto' : 0,
+                opacity: ongoingExpanded ? 1 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <div className="flex justify-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[800px] w-full">
+                  {monthlyServices.map((service, index) => (
+                    <ScrollReveal key={service.title} delay={index * 0.1}>
+                      <ServiceCard
+                        icon={service.icon}
+                        title={service.title}
+                        subtitle={service.subtitle}
+                        price={service.price}
+                        bullets={service.bullets}
+                        note={service.note}
+                        index={index}
+                        unavailable={service.unavailable}
+                      />
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Why KMG Section */}
-      <section className="py-32 px-6 relative z-10">
+      <section className="py-24 px-6 relative z-10">
         <div className="max-w-4xl mx-auto relative">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -680,7 +839,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-32 px-6 relative z-10">
+      <section id="portfolio" className="py-24 px-6 relative z-10 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <ScrollReveal direction="up">
@@ -717,7 +876,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 relative z-10">
+      <section id="contact" className="py-24 px-6 relative z-10 scroll-mt-20">
         <div className="max-w-5xl mx-auto relative">
           <div className="text-center mb-16">
             <h2
@@ -911,6 +1070,19 @@ const onlinePresenceServices = [
     note: undefined,
     unavailable: undefined,
   },
+  {
+    icon: <IconMailForward className="w-6 h-6" />,
+    title: "Professional Email Setup",
+    subtitle: undefined,
+    price: "$99",
+    bullets: [
+      "Professional email address (like you@yourbusiness.com)",
+      "Setup in your email app (Outlook, Gmail, etc.)",
+      "Secure setup & testing",
+    ],
+    note: undefined,
+    unavailable: undefined,
+  },
 ];
 
 // ROW 3 - BRANDING
@@ -927,19 +1099,6 @@ const brandingServices = [
       "All file formats you need",
     ],
     note: "Need something more comprehensive? Reach out.",
-    unavailable: undefined,
-  },
-  {
-    icon: <IconMailForward className="w-6 h-6" />,
-    title: "Professional Email Setup",
-    subtitle: undefined,
-    price: "$99",
-    bullets: [
-      "Professional email address (like you@yourbusiness.com)",
-      "Setup in your email app (Outlook, Gmail, etc.)",
-      "Secure setup & testing",
-    ],
-    note: undefined,
     unavailable: undefined,
   },
   {

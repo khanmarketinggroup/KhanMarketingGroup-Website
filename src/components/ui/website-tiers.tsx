@@ -180,21 +180,6 @@ function WebsiteTierCard({ tier }: { tier: WebsiteTier; index: number }) {
 export function WebsiteTiers({ tiers }: WebsiteTiersProps) {
   return (
     <div className="mb-12">
-      {/* Header */}
-      <ScrollReveal>
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2563eb]/10 to-[#06b6d4]/10 border border-[#2563eb]/20 flex items-center justify-center">
-            <IconWorld className="w-6 h-6 text-[#06b6d4]" />
-          </div>
-          <h3
-            className="text-2xl font-semibold text-white"
-            style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
-          >
-            Websites
-          </h3>
-        </div>
-      </ScrollReveal>
-
       {/* Tiers Grid */}
       <div className="grid md:grid-cols-3 gap-4">
         {tiers.map((tier, index) => (
