@@ -114,7 +114,11 @@ function WebsiteTierCard({ tier }: { tier: WebsiteTier; index: number }) {
                 <a
                   href="#contact"
                   className="inline-flex items-center justify-center h-11 px-8 text-sm font-medium text-white rounded-full bg-gradient-to-r from-[#2563eb] to-[#06b6d4] clickable-hover"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   Let&apos;s Talk
                 </a>
