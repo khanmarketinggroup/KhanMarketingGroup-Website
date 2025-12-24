@@ -52,6 +52,7 @@ export function BusinessStarterHub() {
     const [activeTooltip, setActiveTooltip] = useState<number | null>(null);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 
@@ -103,7 +104,7 @@ export function BusinessStarterHub() {
                             transition: `all 0.5s ease-out ${index * 0.1}s`,
                         }}
                     >
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#111111] border border-white/[0.08] hover:border-[#06b6d4]/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all duration-300">
+                        <div className="clickable-hover flex items-center gap-2 px-4 py-2 rounded-full bg-[#111111] border border-white/[0.08] hover:border-[#06b6d4]/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] active:border-[#06b6d4] active:shadow-[0_0_25px_rgba(6,182,212,0.6)] transition-all duration-200">
                             <service.icon className="w-4 h-4 text-[#06b6d4]" />
                             <span className="text-sm text-white">{service.label}</span>
                         </div>
@@ -151,8 +152,8 @@ export function BusinessStarterHub() {
             </svg>
 
             {/* Main hub box */}
-            <div 
-                className="relative w-full max-w-lg p-8 md:p-10 pt-12 rounded-2xl border border-white/[0.08] bg-[#111111]"
+            <div
+                className="group relative w-full max-w-lg p-8 md:p-10 pt-12 rounded-2xl border border-white/[0.08] bg-[#111111] hover:border-white/[0.15] hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(6,182,212,0.15)]"
                 style={{
                     opacity: mounted ? (isVisible ? 1 : 0) : 1,
                     transform: mounted ? (isVisible ? 'scale(1)' : 'scale(0.9)') : 'none',
@@ -164,7 +165,7 @@ export function BusinessStarterHub() {
                 
                 {/* Title badge */}
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#111111] text-[#06b6d4] text-sm rounded-full border border-[#06b6d4]/30">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#111111] text-[#06b6d4] text-sm rounded-full border border-[#06b6d4]/30 group-hover:animate-[badge-pulse_0.6s_ease-in-out]">
                         <IconSparkles className="w-4 h-4" />
                         Best Value
                     </div>

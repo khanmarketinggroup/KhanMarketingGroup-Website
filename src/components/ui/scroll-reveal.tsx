@@ -14,6 +14,7 @@ export function ScrollReveal({ children, delay = 0, direction = "left" }: Scroll
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 

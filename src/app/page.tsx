@@ -34,8 +34,11 @@ import {
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [storyExpanded, setStoryExpanded] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -62,18 +65,18 @@ export default function Home() {
           
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-10">
-            <a href="#services" className="text-[#d4d4d4] hover:text-white transition-colors text-sm tracking-wide">
+            <a href="#services" className="nav-link text-[#d4d4d4] text-sm tracking-wide">
               Services
             </a>
-            <a href="#about" className="text-[#d4d4d4] hover:text-white transition-colors text-sm tracking-wide">
+            <a href="#about" className="nav-link text-[#d4d4d4] text-sm tracking-wide">
               About
             </a>
-            <a href="#portfolio" className="text-[#d4d4d4] hover:text-white transition-colors text-sm tracking-wide">
+            <a href="#portfolio" className="nav-link text-[#d4d4d4] text-sm tracking-wide">
               Portfolio
             </a>
             <a
               href="#contact"
-              className="px-6 py-2.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white rounded-full text-sm font-medium hover:opacity-90 transition-all tracking-wide"
+              className="nav-button-premium px-6 py-2.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white rounded-full text-sm font-medium tracking-wide"
             >
               Contact
             </a>
@@ -104,31 +107,31 @@ export default function Home() {
               className="md:hidden bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/[0.05] overflow-hidden"
             >
               <div className="px-4 py-5 flex flex-col gap-3">
-                <a 
-                  href="#services" 
+                <a
+                  href="#services"
                   onClick={handleNavClick}
-                  className="text-[#d4d4d4] hover:text-white transition-colors text-base py-2"
+                  className="nav-link text-[#d4d4d4] text-base py-2"
                 >
                   Services
                 </a>
-                <a 
-                  href="#about" 
+                <a
+                  href="#about"
                   onClick={handleNavClick}
-                  className="text-[#d4d4d4] hover:text-white transition-colors text-base py-2"
+                  className="nav-link text-[#d4d4d4] text-base py-2"
                 >
                   About
                 </a>
-                <a 
-                  href="#portfolio" 
+                <a
+                  href="#portfolio"
                   onClick={handleNavClick}
-                  className="text-[#d4d4d4] hover:text-white transition-colors text-base py-2"
+                  className="nav-link text-[#d4d4d4] text-base py-2"
                 >
                   Portfolio
                 </a>
                 <a
                   href="#contact"
                   onClick={handleNavClick}
-                  className="px-6 py-3 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white rounded-full text-base font-medium text-center mt-2"
+                  className="nav-button-premium px-6 py-3 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white rounded-full text-base font-medium text-center mt-2"
                 >
                   Contact
                 </a>
@@ -173,7 +176,7 @@ export default function Home() {
               as="a"
               href="#contact"
               borderRadius="9999px"
-              containerClassName="h-14 w-44 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-shadow duration-300"
+              containerClassName="h-14 w-44 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-shadow duration-300 clickable-hover"
               className="text-base px-8 tracking-wide"
               duration={3000}
             >
@@ -182,7 +185,7 @@ export default function Home() {
 
             <a
               href="#services"
-              className="px-8 py-4 rounded-full text-[#d4d4d4] hover:text-white border border-white/[0.1] hover:border-white/25 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300 text-base tracking-wide"
+              className="clickable-hover px-8 py-4 rounded-full text-[#d4d4d4] hover:text-white border border-white/[0.1] hover:border-white/25 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300 text-base tracking-wide"
             >
               View Services
             </a>
@@ -282,18 +285,6 @@ export default function Home() {
       {/* Why Khan Marketing Group Exists Section */}
       <section id="about" className="py-32 px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <ScrollReveal direction="up">
-              <h2
-                className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight"
-                style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
-              >
-                Why Khan Marketing Group Exists
-              </h2>
-              <div className="w-24 h-[2px] premium-divider mx-auto" />
-            </ScrollReveal>
-          </div>
-
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -301,24 +292,147 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            {/* Opening Story */}
-            <div className="space-y-5 text-[#d4d4d4] text-lg leading-relaxed">
-              <p>
-                I paid <span className="text-[#06b6d4] font-semibold">$2,500</span> to a marketing company to set up my online presence — website, Google Business Profile, professional email, the basics.
-              </p>
-              <p>
-                What I got back? A Wix website so bad I had to pay someone else <span className="text-[#06b6d4] font-semibold">$500</span> to fix it. That&apos;s <span className="text-[#06b6d4] font-semibold">$3,000</span> spent — and I still wasn&apos;t happy with the result.
-              </p>
-              <p>
-                So I learned to build websites myself. Now I do it the right way through Khan Marketing Group.
-              </p>
-              <p className="text-white font-medium">
-                Here&apos;s what nobody tells you about these platforms:
-              </p>
+            {/* Collapsible Story Toggle */}
+            <div className="relative flex justify-center mb-16">
+              {/* Floating Tab */}
+              <div
+                className="absolute -top-3 z-20 bg-[#06b6d4] text-black px-4 py-1.5 rounded-full text-sm font-bold"
+                style={{
+                  boxShadow: '0 4px 12px rgba(6, 182, 212, 0.4)',
+                  cursor: 'pointer'
+                }}
+              >
+                {storyExpanded ? 'Click to close ▲' : 'Click to read ▼'}
+              </div>
+
+              {/* Main Button */}
+              <button
+                onClick={() => {
+                  setButtonPressed(true);
+                  setTimeout(() => {
+                    setButtonPressed(false);
+                    setStoryExpanded(!storyExpanded);
+                  }, 100);
+                }}
+                className="group relative px-12 py-6 rounded-full bg-[#111111] text-[#2563eb] border-2 border-[#2563eb]/30 font-bold text-2xl md:text-3xl transition-all duration-200 hover:-translate-y-1 hover:scale-105 hover:border-[#2563eb]/60"
+                style={{
+                  fontFamily: 'var(--font-montserrat), sans-serif',
+                  animation: storyExpanded ? 'button-bounce-blue 0.4s ease-out' : 'pulse-glow-blue 3s ease-in-out infinite',
+                  transform: buttonPressed ? 'scale(0.95)' : '',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 0 40px rgba(37, 99, 235, 1), 0 0 80px rgba(37, 99, 235, 0.7)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '';
+                }}
+              >
+                Why Khan Marketing Group Exists
+              </button>
             </div>
 
+            {/* Collapsible Story Content */}
+            <motion.div
+              initial={false}
+              animate={{
+                height: storyExpanded ? 'auto' : 0,
+                opacity: storyExpanded ? 1 : 0,
+                y: storyExpanded ? 0 : -20,
+              }}
+              transition={{
+                duration: 0.6,
+                ease: [0.4, 0, 0.2, 1],
+                opacity: { duration: 0.5 },
+                y: { duration: 0.5 }
+              }}
+              className="overflow-hidden"
+            >
+              <motion.div
+                className="space-y-8 pt-4"
+                initial={false}
+                animate={storyExpanded ? "open" : "closed"}
+                variants={{
+                  open: {
+                    transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+                  },
+                  closed: {
+                    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+                  }
+                }}
+              >
+                {/* Opening Story */}
+                <motion.div
+                  className="space-y-5 text-[#d4d4d4] text-lg leading-relaxed"
+                  variants={{
+                    open: { opacity: 1, y: 0 },
+                    closed: { opacity: 0, y: -10 }
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <p>
+                    Hey, I&apos;m Omair Khan, founder of Khan Marketing Group.
+                  </p>
+                  <p>
+                    Before starting Khan Marketing Group, I paid <span className="text-[#06b6d4] font-semibold">$2,500</span> to a marketing company to set up my other business&apos;s online presence — website, Google Business Profile, professional email, the basics.
+                  </p>
+                  <p>
+                    What I got back? A Wix website so bad I had to hire a freelancer on Fiverr for another <span className="text-[#06b6d4] font-semibold">$500</span> just to fix it. He did decent work — but every time I needed a change, I had to message him through the app and wait for him to be available. I couldn&apos;t even edit it myself. Every time I touched something in Wix, three other things would break.
+                  </p>
+                  <p>
+                    That&apos;s <span className="text-[#06b6d4] font-semibold">$3,000</span> spent, and I still didn&apos;t have a website I was happy with.
+                  </p>
+                  <p>
+                    So I learned to build websites the right way.
+                  </p>
+                </motion.div>
+
+                {/* Three Options */}
+                <motion.div
+                  className="space-y-5 text-[#d4d4d4] text-lg leading-relaxed"
+                  variants={{
+                    open: { opacity: 1, y: 0 },
+                    closed: { opacity: 0, y: -10 }
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <p className="text-white font-semibold text-xl">
+                    Here&apos;s the thing — you have three options:
+                  </p>
+                  <p>
+                    <span className="text-white font-semibold">Option 1: Hire a freelancer.</span> Sites like Fiverr charge anywhere from $300-$1,000. Sometimes you get lucky, sometimes you don&apos;t. Either way, once the job is done, you&apos;re on your own — just a chat thread on an app.
+                  </p>
+                  <p>
+                    <span className="text-white font-semibold">Option 2: Hire an agency.</span> Agencies do quality work — but you&apos;re paying for it. Most charge $1,500-$10,000 depending on the scope. If you have the budget, nothing wrong with that.
+                  </p>
+                  <p>
+                    <span className="text-white font-semibold">Option 3: Build it yourself.</span> Platforms like Wix and GoDaddy make it look easy. But your website is the first thing people see before they decide to work with you. If it looks like a basic template, you&apos;ve already lost their trust. And you&apos;re still paying $200-$400/year in platform fees — forever.
+                  </p>
+                </motion.div>
+
+                {/* Platform Costs Intro */}
+                <motion.div
+                  className="text-[#d4d4d4] text-lg leading-relaxed"
+                  variants={{
+                    open: { opacity: 1, y: 0 },
+                    closed: { opacity: 0, y: -10 }
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <p className="text-white font-semibold text-xl">
+                    Think doing it yourself saves money? Here&apos;s what these &quot;affordable&quot; platforms actually cost:
+                  </p>
+                </motion.div>
+
             {/* Cost Comparison Section */}
-            <div className="my-12">
+            <motion.div
+              className="my-12"
+              variants={{
+                open: { opacity: 1, y: 0 },
+                closed: { opacity: 0, y: -10 }
+              }}
+              transition={{ duration: 0.4 }}
+            >
               <h3 className="text-2xl font-semibold text-white mb-6 text-center" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
                 The Real Cost of &quot;Affordable&quot; Website Builders
               </h3>
@@ -380,17 +494,27 @@ export default function Home() {
                   With Wix, your website, domain, and email are all locked to their platform — and they charge a premium for it. GoDaddy is more flexible, but you&apos;re still paying hundreds per year for something that doesn&apos;t have to cost that much. <span className="text-white font-semibold">With us, you own everything outright.</span>
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* How We Do It Differently */}
-            <div className="my-12">
+            <motion.div
+              className="my-12"
+              variants={{
+                open: { opacity: 1, y: 0 },
+                closed: { opacity: 0, y: -10 }
+              }}
+              transition={{ duration: 0.4 }}
+            >
               <h3 className="text-2xl font-semibold text-white mb-6" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
                 How We Do It Differently
               </h3>
 
               <div className="space-y-5 text-[#d4d4d4] text-lg leading-relaxed">
                 <p>
-                  I build your website with clean code that <span className="text-white font-semibold">YOU actually own</span> — hosted free on modern platforms. Your domain is registered in <span className="text-white font-semibold">YOUR name</span>. Professional email set up directly for you.
+                  I build you a professional website that doesn&apos;t look like a DIY template — hosted free on modern platforms. Your domain is registered in <span className="text-white font-semibold">YOUR name</span>. Professional email set up directly for you.
+                </p>
+                <p>
+                  You&apos;re not locked into any platform. Need a small change down the road? Text me. I&apos;ll handle it. Want another developer to take over someday? They can — you own everything.
                 </p>
 
                 <div className="rounded-2xl border border-[#06b6d4]/30 bg-[#06b6d4]/5 p-6 my-6">
@@ -423,62 +547,78 @@ export default function Home() {
                 </div>
 
                 <p className="text-xl text-white font-semibold">
-                  That&apos;s it. No $400+ yearly fees. No surprise renewals.
+                  That&apos;s it. No $400+ yearly fees. No surprise renewals. No platform lock-in.
                 </p>
 
                 <p>
-                  And if you ever want to walk away? I&apos;ll hand you the code. It&apos;s yours. No questions asked.
+                  And if you ever want to walk away? I&apos;ll hand you everything. It&apos;s yours. No questions asked.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Proof It Works */}
-            <div className="my-12">
-              <h3 className="text-2xl font-semibold text-white mb-6 text-center" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
-                Proof It Works
-              </h3>
+                {/* Proof It Works */}
+                <motion.div
+                  className="my-12"
+                  variants={{
+                    open: { opacity: 1, y: 0 },
+                    closed: { opacity: 0, y: -10 }
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <h3 className="text-2xl font-semibold text-white mb-6 text-center" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                    Proof It Works
+                  </h3>
 
-              <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-[#111111] border border-white/[0.06]">
-                  <div className="w-2 h-2 rounded-full bg-[#06b6d4] mt-2 flex-shrink-0" />
-                  <div>
-                    <p className="text-white font-medium">Clean & Green Property Care</p>
-                    <p className="text-[#06b6d4] text-sm">40+ five-star Google reviews</p>
+                  <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                    <div className="flex items-start gap-3 p-4 rounded-xl bg-[#111111] border border-white/[0.06]">
+                      <div className="w-2 h-2 rounded-full bg-[#06b6d4] mt-2 flex-shrink-0" />
+                      <div>
+                        <p className="text-white font-medium">Clean & Green Property Care</p>
+                        <p className="text-[#06b6d4] text-sm">40+ five-star Google reviews</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 p-4 rounded-xl bg-[#111111] border border-white/[0.06]">
+                      <div className="w-2 h-2 rounded-full bg-[#06b6d4] mt-2 flex-shrink-0" />
+                      <div>
+                        <p className="text-white font-medium">Shifa Home Care</p>
+                        <p className="text-[#06b6d4] text-sm">Went from 3.9 to 4.8 stars</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 p-4 rounded-xl bg-[#111111] border border-white/[0.06]">
+                      <div className="w-2 h-2 rounded-full bg-[#06b6d4] mt-2 flex-shrink-0" />
+                      <div>
+                        <p className="text-white font-medium">Khan Marketing Group</p>
+                        <p className="text-[#a3a3a3] text-sm">Yes, this site too</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-[#111111] border border-white/[0.06]">
-                  <div className="w-2 h-2 rounded-full bg-[#06b6d4] mt-2 flex-shrink-0" />
-                  <div>
-                    <p className="text-white font-medium">Shifa Home Care</p>
-                    <p className="text-[#06b6d4] text-sm">Went from 3.9 to 4.8 stars</p>
-                  </div>
-                </div>
+                {/* The Bottom Line */}
+                <motion.div
+                  className="my-12 space-y-6 text-[#d4d4d4] text-lg leading-relaxed"
+                  variants={{
+                    open: { opacity: 1, y: 0 },
+                    closed: { opacity: 0, y: -10 }
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <h3 className="text-2xl font-semibold text-white" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                    The Bottom Line
+                  </h3>
 
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-[#111111] border border-white/[0.06]">
-                  <div className="w-2 h-2 rounded-full bg-[#06b6d4] mt-2 flex-shrink-0" />
-                  <div>
-                    <p className="text-white font-medium">Khan Marketing Group</p>
-                    <p className="text-[#a3a3a3] text-sm">Yes, this site too</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  <p>
+                    That&apos;s why the Business Starter Package exists — everything you need to launch your online presence, built the right way, so you actually own it. No lock-in.
+                  </p>
 
-            {/* The Bottom Line */}
-            <div className="my-12 space-y-6 text-[#d4d4d4] text-lg leading-relaxed">
-              <h3 className="text-2xl font-semibold text-white" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
-                The Bottom Line
-              </h3>
-
-              <p>
-                That&apos;s why the Business Starter Package exists — everything you need to launch your online presence, built the right way, so you actually own it. No lock-in.
-              </p>
-
-              <p className="text-white font-bold text-xl pt-4">
-                You work directly with the founder. No account managers. No runaround.
-              </p>
-            </div>
+                  <p className="text-white font-bold text-xl pt-4">
+                    You work directly with the founder. No account managers. No runaround.
+                  </p>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -508,8 +648,8 @@ export default function Home() {
                   key={index}
                   className="flex items-start gap-4 p-5 rounded-xl bg-[#111111] border border-white/[0.06] hover:border-[#2563eb]/30 transition-all duration-300"
                 >
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#2563eb]/20 to-[#06b6d4]/20 flex items-center justify-center flex-shrink-0 mt-0.5 border border-[#06b6d4]/30">
-                    <IconCheck className="w-3.5 h-3.5 text-[#06b6d4]" />
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-r from-[#2563eb]/20 to-[#06b6d4]/20 flex items-center justify-center flex-shrink-0 mt-0.5 border border-[#06b6d4]/50">
+                    <IconCheck className="w-5 h-5 text-[#06b6d4]" strokeWidth={3} />
                   </div>
                   <span className="text-[#d0d0d0]">{reason}</span>
                 </div>
@@ -564,7 +704,7 @@ export default function Home() {
               className="text-3xl md:text-5xl font-semibold text-white mb-4 tracking-tight"
               style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
             >
-              Let's Talk
+              Let&apos;s Talk
             </h2>
             <p className="text-[#d4d4d4] text-lg">
               Let&apos;s talk about what you need. No pressure, no sales pitch.
@@ -853,12 +993,12 @@ const websiteTiers = [
   },
   {
     title: "Custom Builds",
-    price: "",
+    price: "Contact us for a quote",
     hasButton: true,
     bullets: [
       "Complex multi-page sites",
       "Advanced features",
-      "Custom functionality",
+      "Custom functionality (like this site)",
     ],
   },
 ];

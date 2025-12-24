@@ -15,62 +15,21 @@ interface WebsiteTiersProps {
   tiers: WebsiteTier[];
 }
 
-function WebsiteTierCard({ tier, index }: { tier: WebsiteTier; index: number }) {
+function WebsiteTierCard({ tier }: { tier: WebsiteTier; index: number }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const handleClick = () => {
-    if (!tier.hasButton) {
-      setIsFlipped(!isFlipped);
+  const handleClick = (e: React.MouseEvent) => {
+    // Don't flip if clicking the button
+    if ((e.target as HTMLElement).closest('a')) {
+      return;
     }
+    setIsFlipped(!isFlipped);
   };
 
-  // Custom Build card doesn't flip
-  if (tier.hasButton) {
-    return (
-      <div className="group relative rounded-2xl overflow-hidden h-full" style={{ minHeight: "300px" }}>
-        {/* Hover glow */}
-        <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-b from-[#2563eb]/0 to-[#06b6d4]/0 group-hover:from-[#2563eb]/10 group-hover:to-[#06b6d4]/5 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-
-        {/* Card border */}
-        <div className="absolute inset-0 rounded-2xl border border-white/[0.06] group-hover:border-[#2563eb]/30 transition-colors duration-300" />
-
-        {/* Background */}
-        <div className="absolute inset-[1px] rounded-2xl bg-[#111111]" />
-
-        {/* Content */}
-        <div className="relative z-10 p-6 flex flex-col items-center justify-center h-full text-center">
-          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#2563eb]/10 to-[#06b6d4]/10 border border-[#2563eb]/20 flex items-center justify-center mb-6 group-hover:border-[#06b6d4]/40 transition-all duration-300">
-            <IconWorld className="w-8 h-8 text-[#06b6d4]" />
-          </div>
-          <h4
-            className="text-xl font-semibold text-white mb-4"
-            style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
-          >
-            {tier.title}
-          </h4>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center h-12 px-8 text-base font-medium text-white rounded-full bg-gradient-to-r from-[#2563eb] to-[#06b6d4] hover:opacity-90 transition-opacity duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] mb-6"
-          >
-            Let&apos;s Talk
-          </a>
-          <ul className="space-y-2 text-left">
-            {tier.bullets.map((bullet, i) => (
-              <li key={i} className="flex items-start gap-2 text-[#d4d4d4] text-sm">
-                <span className="text-[#06b6d4] mt-0.5">•</span>
-                <span>{bullet}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    );
-  }
-
-  // Regular tier cards with flip
+  // All tier cards flip (including Custom Builds)
   return (
     <div
-      className="group relative h-full cursor-pointer"
+      className="group relative h-full cursor-pointer clickable-hover"
       style={{ perspective: "1000px", minHeight: "300px" }}
       onClick={handleClick}
     >
@@ -140,7 +99,7 @@ function WebsiteTierCard({ tier, index }: { tier: WebsiteTier; index: number }) 
             <p className="text-[#06b6d4] text-base font-bold mb-6 text-center">{tier.price}</p>
 
             {/* Bullet points */}
-            <ul className="space-y-3 flex-grow">
+            <ul className="space-y-3 mb-4">
               {tier.bullets.map((bullet, i) => (
                 <li key={i} className="flex items-start gap-2 text-[#d4d4d4] text-sm">
                   <span className="text-[#06b6d4] mt-0.5">•</span>
@@ -149,7 +108,23 @@ function WebsiteTierCard({ tier, index }: { tier: WebsiteTier; index: number }) 
               ))}
             </ul>
 
-            <p className="text-[#a3a3a3] text-sm italic text-center mt-4">Click to flip back</p>
+            {/* Let's Talk button for Custom Builds */}
+            {tier.hasButton && (
+              <div className="mb-4 flex justify-center">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center h-11 px-8 text-sm font-medium text-white rounded-full bg-gradient-to-r from-[#2563eb] to-[#06b6d4] clickable-hover"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Let&apos;s Talk
+                </a>
+              </div>
+            )}
+
+            {/* Push to bottom */}
+            <div className="flex-grow"></div>
+
+            <p className="text-[#a3a3a3] text-sm italic text-center">Click to flip back</p>
           </div>
         </div>
       </div>

@@ -90,11 +90,11 @@ export function PortfolioCard({
   image,
 }: PortfolioCardProps) {
   return (
-    <a 
-      href={url} 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      className="group block cursor-pointer"
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block cursor-pointer clickable-hover"
     >
       <div className="mb-5">
         <AnimatedBorderWrapper>

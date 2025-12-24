@@ -33,7 +33,7 @@ export function ServiceCard({
   return (
     <>
       <div
-        className="group relative h-full cursor-pointer"
+        className="group relative h-full cursor-pointer clickable-hover"
         style={{ perspective: "1000px", minHeight: "400px" }}
         onClick={handleClick}
       >

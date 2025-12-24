@@ -97,7 +97,7 @@ export function ContactForm() {
     "w-full px-4 py-3.5 rounded-xl bg-[#0a0a0a] border border-white/[0.12]",
     "text-white placeholder:text-[#707070]",
     "focus:outline-none focus:border-[#2563eb]/60 focus:ring-2 focus:ring-[#2563eb]/20",
-    "transition-all duration-300"
+    "transition-all duration-300 cursor-text"
   );
 
   if (submitStatus === "success") {
@@ -116,7 +116,7 @@ export function ContactForm() {
         </p>
         <button
           onClick={() => setSubmitStatus("idle")}
-          className="text-[#06b6d4] hover:text-[#22d3ee] transition-colors text-sm"
+          className="text-[#06b6d4] hover:text-[#22d3ee] transition-colors text-sm cursor-pointer"
         >
           Send another message →
         </button>
@@ -185,7 +185,7 @@ export function ContactForm() {
               type="button"
               onClick={() => handleServiceToggle(service)}
               className={cn(
-                "px-4 py-2 rounded-full text-sm border transition-all duration-300",
+                "px-4 py-2 rounded-full text-sm border transition-all duration-300 cursor-pointer",
                 formData.services.includes(service)
                   ? "bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white border-transparent shadow-[0_0_15px_rgba(6,182,212,0.3)]"
                   : "bg-transparent text-[#d4d4d4] border-white/[0.12] hover:border-[#2563eb]/50 hover:text-white"
@@ -206,7 +206,7 @@ export function ContactForm() {
               type="button"
               onClick={() => setFormData({ ...formData, contactMethod: method })}
               className={cn(
-                "px-5 py-2.5 rounded-xl text-sm border transition-all duration-300",
+                "px-5 py-2.5 rounded-xl text-sm border transition-all duration-300 cursor-pointer",
                 formData.contactMethod === method
                   ? "bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white border-transparent shadow-[0_0_15px_rgba(6,182,212,0.3)]"
                   : "bg-transparent text-[#d4d4d4] border-white/[0.12] hover:border-[#2563eb]/50 hover:text-white"
@@ -249,7 +249,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="relative w-full p-[2px] rounded-xl overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
+        className="relative w-full p-[2px] rounded-xl overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] active:scale-95 active:transition-all active:duration-100"
       >
         {/* Animated border */}
         <div className="absolute inset-0 rounded-xl">
@@ -259,13 +259,13 @@ export function ContactForm() {
             </MovingBorder>
           )}
         </div>
-        
+
         {/* Gradient background */}
         <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#2563eb] to-[#06b6d4]" />
-        
+
         {/* Hover glow */}
-        <div className="absolute inset-[-4px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md bg-gradient-to-r from-[#2563eb]/40 to-[#06b6d4]/40" />
-        
+        <div className="absolute inset-[-4px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md bg-gradient-to-r from-[#2563eb]/60 to-[#06b6d4]/60" />
+
         {/* Content */}
         <div className="relative bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white py-4 rounded-xl font-medium tracking-wide">
           {isSubmitting ? "Sending..." : "Send Message"}

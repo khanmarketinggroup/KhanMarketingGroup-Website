@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/portfolio/favicon.png",
   },
 };
 
@@ -99,7 +99,7 @@ export default function RootLayout({
               "name": "Khan Marketing Group",
               "description": "Digital marketing agency in Chicagoland offering website design, Google Business Profile setup, social media management, branding, flyers, and business cards for local businesses.",
               "url": "https://khanmarketinggroup.com",
-              "logo": "https://khanmarketinggroup.com/logo.png",
+              "logo": "https://khanmarketinggroup.com/portfolio/logo-white.png",
               "image": "https://khanmarketinggroup.com/og-image.jpg",
               "address": {
                 "@type": "PostalAddress",

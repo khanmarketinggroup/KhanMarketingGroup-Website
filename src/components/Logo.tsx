@@ -31,8 +31,8 @@ export function Logo({ variant = "white", className, size = "md", type = "full" 
 
   let imageSrc: string;
   if (type === "short") {
-    // Short KMG logo (favicon)
-    imageSrc = "/portfolio/favicon.png";
+    // Short KMG logo (header)
+    imageSrc = "/portfolio/logo-short-white.png";
   } else {
     // Full logo
     imageSrc = variant === "white" ? "/portfolio/logo-white.png" : "/portfolio/logo-black.png";
