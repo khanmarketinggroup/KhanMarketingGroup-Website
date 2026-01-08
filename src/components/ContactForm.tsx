@@ -164,10 +164,9 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label className="block text-sm text-[#d4d4d4] mb-2">Business Name *</label>
+          <label className="block text-sm text-[#d4d4d4] mb-2">Business Name</label>
           <input
             type="text"
-            required
             value={formData.businessName}
             onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
             className={inputClasses}
